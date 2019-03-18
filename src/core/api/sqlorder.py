@@ -1,5 +1,6 @@
 import logging
 import json
+import  traceback
 from libs import baseview, util
 from libs import call_inception
 from core.task import submit_push_messages
@@ -42,10 +43,12 @@ class sqlorder(baseview.BaseView):
                     return HttpResponse(status=500)
 
         elif args == 'test':
+            print("test 测试")
             try:
                 id = request.data['id']
                 base = request.data['base']
                 sql = request.data['sql']
+                print("断点")
                 sql = str(sql).strip('\n').strip().rstrip(';')
                 data = DatabaseList.objects.filter(id=id).first()
                 info = {
@@ -55,18 +58,23 @@ class sqlorder(baseview.BaseView):
                     'db': base,
                     'port': data.port
                 }
+                print(info)
             except KeyError as e:
+                print("异常")
                 CUSTOM_ERROR.error(f'{e.__class__.__name__}: {e}')
             else:
                 try:
                     with call_inception.Inception(LoginDic=info) as test:
+                        print("sql"+sql)
                         res = test.Check(sql=sql)
                         return Response({'result': res, 'status': 200})
                 except Exception as e:
+                    traceback.print_exc()
                     CUSTOM_ERROR.error(f'{e.__class__.__name__}: {e}')
                     return HttpResponse(e)
 
     def post(self, request, args=None):
+        print("post请求")
         try:
             data = json.loads(request.data['data'])
             tmp = json.loads(request.data['sql'])

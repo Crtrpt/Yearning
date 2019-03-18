@@ -10,11 +10,11 @@ import { MainRoute } from './router'
 import store from './aspsm'
 import 'iview/dist/styles/iview.css'
 import config from './libs/util'
-import particles from 'particles.js/particles'
+// import particles from 'particles.js/particles'
 
 Vue.config.productionTip = false
 Vue.prototype.$config = config
-Vue.use(particles)
+// Vue.use(particles)
 Vue.use(Vuex)
 Vue.use(iView)
 Vue.use(VueRouter)

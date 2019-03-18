@@ -150,7 +150,7 @@ class order_push_message(object):
                         'port': detail.port
                     }
             ) as f:
-                res = f.Execute(sql=self.order.sql, backup=self.order.backup)
+                res = f. Execute(sql=self.order.sql, backup=self.order.backup)
                 for i in res:
                     if i['errlevel'] != 0:
                         SqlOrder.objects.filter(work_id=self.order.work_id).update(status=4)

@@ -9,6 +9,9 @@ class cryptoAES(object):
         self.ciphertext = None
 
     def encrypt(self, text):
+        return text
+        print("============")
+        print(text)
         cryptor = AES.new(self.key, self.mode, self.key)
         length = 16
         count = len(text)
@@ -17,10 +20,15 @@ class cryptoAES(object):
         else:
             add = 0
         text = text + ('\0' * add)
+        print(">>>" + text);
         self.ciphertext = cryptor.encrypt(text)
+        print(">>>"+self.ciphertext);
         return bytes.decode(b2a_hex(self.ciphertext))
 
     def decrypt(self, text):
+        return  text
+        print("============")
+        print(text)
         cryptor = AES.new(self.key, self.mode, self.key)
         plain_text = cryptor.decrypt(a2b_hex(text))
         return bytes.decode(plain_text.rstrip(b'\0'))
