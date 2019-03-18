@@ -48,6 +48,9 @@
                 <FormItem label="迭代版本:" prop="version">
                   <Input v-model="formItem.version" placeholder="请输入迭代版本"/>
                 </FormItem>
+                 <FormItem label="服务:" prop="service">
+                  <Input v-model="formItem.service" placeholder="请输入迭代版本"/>
+                </FormItem>
 
                 <FormItem label="工单说明:" prop="text">
                   <Input v-model="formItem.text" placeholder="请输入工单说明"/>
@@ -146,6 +149,7 @@
           textarea: '',
           version: '',
           env: 'dev',
+          service: '',
           computer_room: '',
           connection_name: '',
           basename: '',
@@ -216,6 +220,11 @@
             trigger: 'blur'
           }],
           version: [{
+            required: true,
+            message: '迭代版本不得为空',
+            trigger: 'blur'
+          }],
+          service: [{
             required: true,
             message: '迭代版本不得为空',
             trigger: 'blur'
