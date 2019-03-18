@@ -157,6 +157,12 @@
               <FormItem label="数据库管理权限:">
                 <p>{{formItem.base}}</p>
               </FormItem>
+               <FormItem label="环境管理权限:">
+                <p>{{formItem.env}}</p>
+              </FormItem>
+               <FormItem label="服务管理权限:">
+                <p>{{formItem.service}}</p>
+              </FormItem>
             </FormItem>
           </template>
         </FormItem>
@@ -409,7 +415,9 @@
           querycon: [],
           user: '',
           base: '',
-          person: ''
+          person: '',
+          env: '',
+          service: ''
         },
         // 更改部门及权限遮罩层状态
         email: {

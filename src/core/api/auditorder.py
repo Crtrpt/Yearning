@@ -104,7 +104,7 @@ class audit(baseview.SuperUserpermissions):
                             assigned=request.user).only('id').count()
                         info = SqlOrder.objects.filter(
                             assigned=request.user).defer('sql').order_by('-id')[start:end]
-                print(info)
+                print(info.query)
                 data = util.ser(info)
                 info = Account.objects.filter(group='perform').all()
                 ser = serializers.UserINFO(info, many=True)

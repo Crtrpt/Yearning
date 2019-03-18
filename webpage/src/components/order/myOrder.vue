@@ -1,9 +1,27 @@
+
 <style lang="less">
   @import '../../styles/common.less';
   @import '/components/table.less';
 </style>
+
+
 <template>
   <div>
+    <Modal
+        v-model="versionIteration"
+        title="版本迭代"
+        @on-ok="versionIterationOk"
+        @on-cancel="versionIterationCancel">
+           <Form  :label-width="80">
+            <FormItem label="迭代版本">
+              <Input placeholder="迭代版本" v-model="find.version" @on-keyup.enter="queryData"/>
+            </FormItem>
+            <FormItem label="工单说明">
+              <Input placeholder="工单说明" v-model="find.text"  @on-keyup.enter="queryData"/>
+            </FormItem>
+
+           </Form>
+    </Modal>
     <Row>
       <Card>
         <p slot="title">
@@ -24,7 +42,9 @@
           <FormItem>
             <Button type="success" @click="queryData">查询</Button>
             <Button type="primary" @click="queryCancel">重置</Button>
+             <Button type="error" @click="switchEnv">版本迭代</Button>
           </FormItem>
+          <Alert type="success">搜索需要时间限制 dev环境自动审核通过,stg环境需要审核人审核</Alert>
         </Form>
         <Row>
           <Col span="24">
@@ -52,6 +72,7 @@
     name: 'put',
     data () {
       return {
+        versionIteration: false,
         columnsName: [
           {
             title: '工单编号:',
@@ -66,6 +87,11 @@
            {
             title: '迭代版本:',
             key: 'version',
+            sortable: true
+          },
+            {
+            title: '服务:',
+            key: 'service',
             sortable: true
           },
           {
@@ -175,6 +201,16 @@
       queryData () {
         this.find.valve = true
         this.currentpage()
+      },
+      switchEnv () {
+        this.versionIteration = true;
+      },
+      versionIterationOk () {
+
+      },
+      versionIterationCancel () {
+        console.log('取消迭代版本');
+        this.versionIteration = false;
       },
       queryCancel () {
         this.find = this.$config.clearObj(this.find)

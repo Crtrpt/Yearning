@@ -229,6 +229,24 @@ export const appRouter = [{
         }
       },
       {
+        path: 'management-env',
+        name: 'management-env',
+        title: '环境',
+        icon: 'md-medal',
+        component: resolve => {
+          require(['./components/management/envManager.vue'], resolve)
+        }
+      },
+      {
+        path: 'management-service',
+        name: 'management-service',
+        title: '服务',
+        icon: 'md-medal',
+        component: resolve => {
+          require(['./components/management/serviceManager.vue'], resolve)
+        }
+      },
+      {
         path: 'setting',
         name: 'setting',
         title: '设置',

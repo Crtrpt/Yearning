@@ -6,10 +6,12 @@ from libs import call_inception
 from core.task import submit_push_messages
 from rest_framework.response import Response
 from django.http import HttpResponse
+import threading
 from core.models import (
     DatabaseList,
     SqlOrder
 )
+from core.task import order_push_message, rejected_push_messages
 
 CUSTOM_ERROR = logging.getLogger('Yearning.core.views')
 
@@ -92,7 +94,7 @@ class sqlorder(baseview.BaseView):
                 sql = ';'.join(x)
                 sql = sql.strip(' ').rstrip(';')
                 workId = util.workId()
-                SqlOrder.objects.get_or_create(
+                res, err =SqlOrder.objects.get_or_create(
                     username=request.user,
                     date=util.date(),
                     work_id=workId,
@@ -105,8 +107,14 @@ class sqlorder(baseview.BaseView):
                     bundle_id=id,
                     assigned=data['assigned'],
                     delay=data['delay'],
-                    real_name=real_name
+                    real_name=real_name,
+                    version=data['version'],
+                    env=data['env'],
+                    service=data['service'],
                 )
+                if err and data['env'] == 'dev':
+                    arr = order_push_message(addr_ip, res.id,real_name, real_name)
+                    threading.Timer(0, arr.run).start()
                 submit_push_messages(
                     workId=workId,
                     user=request.user,
@@ -117,5 +125,6 @@ class sqlorder(baseview.BaseView):
                 ).start()
                 return Response('已提交，请等待管理员审核!')
             except Exception as e:
+                traceback.print_exc()
                 CUSTOM_ERROR.error(f'{e.__class__.__name__}: {e}')
                 return HttpResponse(status=500)

@@ -124,6 +124,19 @@
               <Radio label="0">否</Radio>
             </RadioGroup>
           </FormItem>
+          <FormItem label="服务权限:">
+            <RadioGroup v-model="permission.service">
+              <Radio label="1">是</Radio>
+              <Radio label="0">否</Radio>
+            </RadioGroup>
+          </FormItem>
+          <FormItem label="环境权限:">
+            <RadioGroup v-model="permission.env">
+              <Radio label="1">是</Radio>
+              <Radio label="0">否</Radio>
+            </RadioGroup>
+          </FormItem>
+      
         </template>
       </Form>
       <div slot="footer">
@@ -163,7 +176,9 @@
     querycon: [],
     user: '0',
     base: '0',
-    person: []
+    person: [],
+    service: '0',
+    env: '0'
   }
   export default {
     name: 'auth-group',

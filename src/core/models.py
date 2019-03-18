@@ -59,6 +59,7 @@ class SqlOrder(models.Model):
     executor = models.CharField(max_length=50, null=True)  # 多级审核下的执行人
     version = models.CharField(max_length=50, null=True)  # 多级审核下的执行人
     env = models.CharField(max_length=10, null=True)  # =版本
+    service = models.CharField(max_length=10, null=True)  # 服务
 
 
 class DatabaseList(models.Model):
