@@ -55,6 +55,12 @@ p {
                 <Button type="primary" @click="acquireStruct()">获取表结构信息</Button>
                 <Button type="error" @click="canel()">重置</Button>
               </Form-item>
+              <FormItem label="环境:" prop="env">
+                <Input v-model="formItem.env" placeholder="执行环境"></Input>
+              </FormItem>
+              <FormItem label="迭代版本:" prop="version">
+                <Input v-model="formItem.version" placeholder="请迭代版本"></Input>
+              </FormItem>
               <FormItem label="工单提交说明:" prop="text">
                 <Input v-model="formItem.text" placeholder="请输入工单说明"></Input>
               </FormItem>
@@ -170,6 +176,16 @@ export default {
             trigger: 'change'
           }
         ],
+        dev: [{
+            required: true,
+            message: '执行环境不得为空',
+            trigger: 'blur'
+        }],
+        version: [{
+            required: true,
+            message: '迭代版本不得为空',
+            trigger: 'blur'
+        }],
         text: [
           {
             required: true,
@@ -188,6 +204,8 @@ export default {
       },
       formItem: {
         text: '',
+        version: '',
+        env: 'dev',
         computer_room: '',
         connection_name: '',
         basename: '',

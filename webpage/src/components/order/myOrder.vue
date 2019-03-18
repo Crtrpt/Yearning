@@ -14,6 +14,9 @@
           <FormItem>
             <Input placeholder="工单说明" v-model="find.text" @on-keyup.enter="queryData"></Input>
           </FormItem>
+            <FormItem>
+            <Input placeholder="迭代版本" v-model="find.version" @on-keyup.enter="queryData"></Input>
+          </FormItem>
           <FormItem>
             <DatePicker format="yyyy-MM-dd HH:mm" type="datetimerange" placeholder="请选择查询的时间范围"
                         v-model="find.picker" @on-change="find.picker=$event" style="width: 250px"></DatePicker>
@@ -53,6 +56,16 @@
           {
             title: '工单编号:',
             key: 'work_id',
+            sortable: true
+          },
+          {
+            title: '执行环境:',
+            key: 'env',
+            sortable: true
+          },
+           {
+            title: '迭代版本:',
+            key: 'version',
             sortable: true
           },
           {
@@ -133,6 +146,8 @@
         find: {
           picker: [],
           valve: false,
+          version: '',
+          env: 'dev',
           text: ''
         },
         multi: false

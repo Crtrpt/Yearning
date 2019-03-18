@@ -28,17 +28,23 @@ class order(baseview.BaseView):
                 end = int(page) * 20
                 if qurey['valve']:
                     if len(qurey['picker']) == 0:
-                        info = SqlOrder.objects.filter(username=request.user, text__contains=qurey['text']).order_by(
+                        info = SqlOrder.objects.filter(username=request.user,
+                                                       version__contains=qurey['version'],
+                                                       text__contains=qurey['text']).order_by(
                             '-id').defer('sql')[start:end]
 
                         page_number = SqlOrder.objects.filter(username=request.user,
                                                               text__contains=qurey['text']).only('id').count()
                     else:
+                        print("查询")
                         picker = []
                         for i in qurey['picker']:
                             picker.append(i)
-                        info = SqlOrder.objects.filter(username=request.user, text__contains=qurey['text'],
-                                                       date__gte=picker[0], date__lte=picker[1]).defer('sql').order_by(
+                        info = SqlOrder.objects.filter(username=request.user,
+                                                       text__contains=qurey['text'],
+                                                       version__contains=qurey['version'],
+                                                       date__gte=picker[0],
+                                                       date__lte=picker[1]).defer('sql').order_by(
                             '-id')[
                                start:end]
 

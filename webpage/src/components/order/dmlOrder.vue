@@ -42,9 +42,15 @@
                     </Option>
                   </Select>
                 </FormItem>
+                <FormItem label="环境:" prop="env">
+                  <Input v-model="formItem.env" placeholder="请输入执行环境"/>
+                </FormItem>
+                <FormItem label="迭代版本:" prop="version">
+                  <Input v-model="formItem.version" placeholder="请输入迭代版本"/>
+                </FormItem>
 
                 <FormItem label="工单说明:" prop="text">
-                  <Input v-model="formItem.text" placeholder="请输入"></Input>
+                  <Input v-model="formItem.text" placeholder="请输入工单说明"/>
                 </FormItem>
 
                 <FormItem label="指定审核人:" prop="assigned">
@@ -138,6 +144,8 @@
         validate_gen: true,
         formItem: {
           textarea: '',
+          version: '',
+          env: 'dev',
           computer_room: '',
           connection_name: '',
           basename: '',
@@ -201,6 +209,16 @@
             required: true,
             message: '数据库名不得为空',
             trigger: 'change'
+          }],
+          dev: [{
+            required: true,
+            message: '执行环境不得为空',
+            trigger: 'blur'
+          }],
+          version: [{
+            required: true,
+            message: '迭代版本不得为空',
+            trigger: 'blur'
           }],
           text: [{
             required: true,

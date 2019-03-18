@@ -38,7 +38,7 @@ class audit(baseview.SuperUserpermissions):
         :return 数据条数, 数据
 
         '''
-
+        print("get order list")
         try:
             page = request.GET.get('page')
             qurey = json.loads(request.GET.get('query'))
@@ -104,6 +104,7 @@ class audit(baseview.SuperUserpermissions):
                             assigned=request.user).only('id').count()
                         info = SqlOrder.objects.filter(
                             assigned=request.user).defer('sql').order_by('-id')[start:end]
+                print(info)
                 data = util.ser(info)
                 info = Account.objects.filter(group='perform').all()
                 ser = serializers.UserINFO(info, many=True)

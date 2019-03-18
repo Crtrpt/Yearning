@@ -57,6 +57,8 @@ class SqlOrder(models.Model):
     rejected = models.TextField(blank=True)  # 驳回说明
     real_name = models.CharField(max_length=100, null=True)  # 姓名
     executor = models.CharField(max_length=50, null=True)  # 多级审核下的执行人
+    version = models.CharField(max_length=50, null=True)  # 多级审核下的执行人
+    env = models.CharField(max_length=10, null=True)  # =版本
 
 
 class DatabaseList(models.Model):
@@ -141,3 +143,5 @@ class query_order(models.Model):
     audit = models.CharField(max_length=100, null=True)
     time = models.CharField(max_length=100, null=True)
     real_name = models.CharField(max_length=100, null=True)  # 真实姓名
+    version = models.CharField(max_length=50, null=True)  # =版本
+    env = models.CharField(max_length=10, null=True)  # =版本
