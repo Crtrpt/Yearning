@@ -3,6 +3,8 @@ serializers
 '''
 from rest_framework import serializers
 from core.models import DatabaseList
+from core.models import Env
+from core.models import Service
 from core.models import SqlRecord
 from core.models import Account
 from core.models import SqlOrder, query_order, querypermissions, globalpermissions, grained
@@ -36,6 +38,26 @@ class Sqllist(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DatabaseList
         fields = ('id', 'connection_name', 'ip', 'computer_room', 'password', 'port', 'username', 'before', 'after')
+
+
+class Envlist(serializers.HyperlinkedModelSerializer):
+    '''
+    环境信息serializers
+    '''
+
+    class Meta:
+        model = Env
+        fields = ('id', 'env_name')
+
+
+class Servicelist(serializers.HyperlinkedModelSerializer):
+    '''
+    环境信息serializers
+    '''
+
+    class Meta:
+        model = Service
+        fields = ('id', 'env_name', 'service_name', "env_id")
 
 
 class query_con(serializers.HyperlinkedModelSerializer):

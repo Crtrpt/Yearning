@@ -63,6 +63,10 @@
         tableData: [],
         columns: [
           {
+            title: '序号',
+            key: 'id'
+          },
+          {
             title: '环境名称',
             key: 'env_name'
           }
@@ -109,7 +113,7 @@
               'data': JSON.stringify(data)
             })
               .then(() => {
-                this.$config.notice('环境添加成功,请对相应用户赋予该数据库访问权限!')
+                this.$config.notice('环境添加成功')
                 this.getPageInfo(this.$refs.page.currentPage)
                 this.$refs['formValidate'].resetFields()
               })

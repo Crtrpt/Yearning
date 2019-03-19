@@ -17,6 +17,8 @@ from core.api.dashboard import (
 )
 from core.api.managerdb import (
     management_db,
+    management_env,
+    management_service,
     dingding
 )
 from core.api.auditorder import (
@@ -64,6 +66,8 @@ urlpatterns = [
     url(r'^api/v1/ldapauth', ldapauth.as_view()),
     url(r'^api/v1/undoOrder', del_order.as_view()),
     url(r'^api/v1/osc/(.*)', osc_step.as_view()),
+    url(r'^api/v1/management_env/(.*)', management_env.as_view()),
+    url(r'^api/v1/management_service/(.*)', management_service.as_view()),
     url(r'^api-token-auth/', login_auth.as_view()),
     url(r'^$', TemplateView.as_view(template_name="index.html")),
 ]

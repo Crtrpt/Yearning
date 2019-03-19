@@ -75,7 +75,9 @@
           'query-review': '1',
           'query-audit': '1',
           'setting': '1',
-          'auth-group': '1'
+          'auth-group': '1',
+          'management-service': '',
+          'management-env': ''
         }
       }
     },
@@ -106,6 +108,8 @@
           this.filtermenulist.dmledit = c.dml
           this.filtermenulist['management-user'] = c.user
           this.filtermenulist['management-database'] = c.base
+          this.filtermenulist['management-service'] = c.service
+          this.filtermenulist['management-env'] = c.env
         })
     }
   }

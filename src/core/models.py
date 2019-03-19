@@ -76,6 +76,23 @@ class DatabaseList(models.Model):
     after = models.TextField(null=True)  # 工单执行成功后 钉钉webhook发送内容
 
 
+class Env(models.Model):
+    '''
+    环境表
+    '''
+    env_name = models.CharField(max_length=50, null=False)  # 连接名
+
+
+class Service(models.Model):
+    '''
+    服务表
+    '''
+    service_name = models.CharField(max_length=50, null=False)  # 连接名
+    env_name = models.CharField(max_length=50, null=False)  # 连接名
+    env_id= models.IntegerField(null=False)
+
+
+
 class SqlRecord(models.Model):
     '''
     工单执行记录表

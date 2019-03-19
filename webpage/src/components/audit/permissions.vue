@@ -79,8 +79,7 @@
           <p v-if="perList.permissions.user === '0'">否</p>
           <p v-else>是</p>
         </FormItem>
-        </FormItem>
-           <FormItem label="环境权限:">
+        <FormItem label="环境权限:">
           <p v-if="perList.permissions.user === '0'">否</p>
           <p v-else>是</p>
         </FormItem>
