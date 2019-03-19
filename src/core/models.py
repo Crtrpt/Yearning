@@ -58,8 +58,10 @@ class SqlOrder(models.Model):
     real_name = models.CharField(max_length=100, null=True)  # 姓名
     executor = models.CharField(max_length=50, null=True)  # 多级审核下的执行人
     version = models.CharField(max_length=50, null=True)  # 多级审核下的执行人
-    env = models.CharField(max_length=10, null=True)  # =版本
-    service = models.CharField(max_length=10, null=True)  # 服务
+    env_name = models.CharField(max_length=10, null=True)  # 环境名称
+    service_name = models.CharField(max_length=10, null=True)  # 服务名称
+    env_id = models.IntegerField(null=False)  # 环境
+    service_id = models.IntegerField(null=False)  # 服务id
 
 
 class DatabaseList(models.Model):
@@ -162,4 +164,7 @@ class query_order(models.Model):
     time = models.CharField(max_length=100, null=True)
     real_name = models.CharField(max_length=100, null=True)  # 真实姓名
     version = models.CharField(max_length=50, null=True)  # =版本
-    env = models.CharField(max_length=10, null=True)  # =版本
+    env_name = models.CharField(max_length=10, null=True)  # =版本
+    service_name = models.CharField(max_length=10, null=True)  # 服务
+    env_id = models.IntegerField(null=False)  # =版本
+    service_id = models.IntegerField(null=False)  # 服务

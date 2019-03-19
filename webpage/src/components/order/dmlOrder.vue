@@ -42,8 +42,8 @@
                     </Option>
                   </Select>
                 </FormItem>
-                <FormItem label="环境:" prop="env">
-                  <Input v-model="formItem.env" placeholder="请输入执行环境"/>
+                <FormItem label="环境:" prop="env_name">
+                  <Input v-model="formItem.env_name" placeholder="请输入执行环境"/>
                 </FormItem>
                 <FormItem label="迭代版本:" prop="version">
                   <Input v-model="formItem.version" placeholder="请输入迭代版本"/>
@@ -148,8 +148,8 @@
         formItem: {
           textarea: '',
           version: '',
-          env: 'dev',
-          service: '',
+          env_name: 'dev',
+          service_name: '',
           computer_room: '',
           connection_name: '',
           basename: '',

@@ -109,10 +109,10 @@ class sqlorder(baseview.BaseView):
                     delay=data['delay'],
                     real_name=real_name,
                     version=data['version'],
-                    env=data['env'],
-                    service=data['service'],
+                    env_name=data['env_name'],
+                    service_name=data['service_name'],
                 )
-                if err and data['env'] == 'dev':
+                if err and data['env_name'] == 'dev':
                     arr = order_push_message(addr_ip, res.id,real_name, real_name)
                     threading.Timer(0, arr.run).start()
                 submit_push_messages(

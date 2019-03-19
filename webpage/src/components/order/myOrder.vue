@@ -81,7 +81,7 @@
           },
           {
             title: '执行环境:',
-            key: 'env',
+            key: 'env_name',
             sortable: true
           },
            {
@@ -91,7 +91,7 @@
           },
             {
             title: '服务:',
-            key: 'service',
+            key: 'service_name',
             sortable: true
           },
           {
