@@ -6,6 +6,8 @@ from django.http import HttpResponse
 from core.models import (
     SqlOrder,
     Account,
+    Env,
+    Service,
     DatabaseList,
     Todolist
 )
@@ -44,10 +46,14 @@ class dashboard(baseview.BaseView):
 
         elif args == 'infocard':
             try:
-                user = Account.objects.count()
-                order = SqlOrder.objects.filter(username=request.user).count()
-                link = DatabaseList.objects.count()
-                return Response([user, order, link])
+                data = {
+                    "createUser" :Account.objects.count(),
+                    "order": SqlOrder.objects.filter(username=request.user).count(),
+                    "link": DatabaseList.objects.count(),
+                    "env" : Env.objects.count(),
+                    "service": Service.objects.count()
+                }
+                return Response(data)
             except Exception as e:
                 CUSTOM_ERROR.error(f'{e.__class__.__name__}: {e}')
                 return HttpResponse(status=500)

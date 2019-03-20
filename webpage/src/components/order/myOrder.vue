@@ -42,7 +42,6 @@
           <FormItem>
             <Button type="success" @click="queryData">查询</Button>
             <Button type="primary" @click="queryCancel">重置</Button>
-             <Button type="error" @click="switchEnv">版本迭代</Button>
           </FormItem>
           <Alert type="success">搜索需要时间限制 dev环境自动审核通过,stg环境需要审核人审核</Alert>
         </Form>
@@ -52,6 +51,7 @@
               <template slot-scope="{ row, index }" slot="action">
                 <div>
                   <Button type="text" @click="openOrder(row)" size="small">详细信息</Button>
+                  <Button type="success" @click="switchEnv(row)">迭代版本</Button>
                   <Button type="text" @click="orderReject(row)" v-if="row.status === 0" size="small">驳回理由</Button>
                 </div>
               </template>
@@ -77,22 +77,26 @@
           {
             title: '工单编号:',
             key: 'work_id',
-            sortable: true
+            sortable: true,
+            width: 160
           },
           {
-            title: '执行环境:',
+            title: '环境:',
             key: 'env_name',
-            sortable: true
+            sortable: true,
+            width: 100
           },
            {
-            title: '迭代版本:',
+            title: '版本:',
             key: 'version',
-            sortable: true
+            sortable: true,
+            width: 100
           },
             {
             title: '服务:',
             key: 'service_name',
-            sortable: true
+            sortable: true,
+            width: 100
           },
           {
             title: '工单说明',
@@ -100,8 +104,9 @@
             tooltip: true
           },
           {
-            title: '是否备份',
-            key: 'backup'
+            title: '备份',
+            key: 'backup',
+            width: 100
           },
           {
             title: '数据库名:',
@@ -202,15 +207,18 @@
         this.find.valve = true
         this.currentpage()
       },
-      switchEnv () {
-        this.versionIteration = true;
+      switchEnv (row) {
+        if (row.type === 0) {
+            this.$router.push({path: 'order/ddledit', query: { id: row.id }})
+        }
+        if (row.type === 1) {
+             this.$router.push({path: 'order/dmledit', query: { id: row.id }})
+        }
       },
       versionIterationOk () {
 
       },
-      versionIterationCancel () {
-        console.log('取消迭代版本');
-        this.versionIteration = false;
+      versionIterationCancel (row) {
       },
       queryCancel () {
         this.find = this.$config.clearObj(this.find)

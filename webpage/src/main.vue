@@ -54,6 +54,7 @@
                   <Icon type="md-arrow-dropdown"/>
                 </a>
                 <DropdownMenu slot="list">
+                  <DropdownItem name="userinfo">个人信息</DropdownItem>
                   <DropdownItem name="loginout">退出登录</DropdownItem>
                 </DropdownMenu>
               </Dropdown>

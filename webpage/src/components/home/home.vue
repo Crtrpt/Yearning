@@ -21,39 +21,33 @@
 <template>
   <div class="home-main">
     <Row>
-      <Col span="8">
+
+      <Col span="24" class-name="padding-left-5">
         <Row>
-          <Card>
-            <Row type="flex" class="user-infor">
-              <Col span="8">
-                <Row class-name="made-child-con-middle" type="flex" align="middle">
-                  <img class="avator-img" src="../../assets/avatar.png"/>
-                </Row>
-              </Col>
-              <Col span="16" style="padding-left:6px;">
-                <Row class-name="made-child-con-middle" type="flex" align="middle">
-                  <div>
-                    <b class="card-user-infor-name">{{username}}</b>
-                    <p>Go confidently in the direction.</p>
-                  </div>
-                </Row>
-              </Col>
-            </Row>
-            <div class="line-gray"></div>
-            <Row class="margin-top-8">
-              <Col span="8">
-                <p class="notwrap">登录时间:</p>
-              </Col>
-              <Col span="16" class="padding-left-8">{{time}}</Col>
-            </Row>
-            <Row>
-              <Col span="8">
-                <p class="notwrap">当前版本:</p>
-              </Col>
-              <Col span="16" class="padding-left-8"> <a target="_Blank"  href="https://cookiey.github.io/Yearning-document/update/">v1.4.2</a></Col>
-            </Row>
-          </Card>
+          <Col span="4">
+            <infor-card id-name="user_created_count" :end-val="count.createUser" iconType="md-person-add"
+                        color="#2d8cf0" intro-text="平台用户"></infor-card>
+          </Col>
+          <Col span="4" class-name="padding-left-5">
+            <infor-card id-name="visit_count" :end-val="count.link" iconType="ios-eye" color="#64d572" :iconSize="50"
+                        intro-text="数据库连接地址"></infor-card>
+          </Col>
+          <Col span="4" class-name="padding-left-5">
+            <infor-card id-name="transfer_count" :end-val="count.order" iconType="md-shuffle" color="#f25e43"
+                        intro-text="我提交的工单"></infor-card>
+          </Col>
+           <Col span="4" class-name="padding-left-5">
+            <infor-card id-name="env_count" :end-val="count.env" iconType="logo-buffer" color="#515a6e"
+                        intro-text="当前环境"></infor-card>
+          </Col>
+             <Col span="4" class-name="padding-left-5">
+            <infor-card id-name="service_count" :end-val="count.service" iconType="ios-apps" color="#2d8cf0"
+                        intro-text="当前服务"></infor-card>
+          </Col>        
         </Row>
+      </Col>
+          
+            <!-- <Col span="8">
         <Row class="margin-top-10">
           <Card>
             <p slot="title" class="card-title">
@@ -62,54 +56,11 @@
             </p>
             <userinfomation></userinfomation>
           </Card>
-        </Row>
-      </Col>
-      <Col span="16" class-name="padding-left-5">
-        <Row>
-          <Col span="6">
-            <infor-card id-name="user_created_count" :end-val="count.createUser" iconType="md-person-add"
-                        color="#2d8cf0" intro-text="平台用户"></infor-card>
-          </Col>
-          <Col span="6" class-name="padding-left-5">
-            <infor-card id-name="visit_count" :end-val="count.link" iconType="ios-eye" color="#64d572" :iconSize="50"
-                        intro-text="数据库连接地址"></infor-card>
-          </Col>
-          <Col span="6" class-name="padding-left-5">
-            <infor-card id-name="transfer_count" :end-val="count.order" iconType="md-shuffle" color="#f25e43"
-                        intro-text="我提交的工单"></infor-card>
-          </Col>
-        </Row>
-        <Row class="margin-top-10">
-          <Col span="12">
-            <Card>
-              <p slot="title" class="card-title">
-                <Icon type="android-map"></Icon>
-                公告栏
-              </p>
-              <div class="data-sourcefunc-row">
-                <H2>欢迎使用Yearning SQL 审核平台</H2>
-                <br>
-                <div class="fuc">
-                  <H3>主要功能:</H3>
-                  <H4 v-for="i in board.title" :key="i">{{i}}</H4>
-                </div>
-              </div>
-            </Card>
-          </Col>
-          <Col span="12" class="padding-left-10">
-            <Card>
-              <p slot="title" class="card-title">
-                <Icon type="ios-pulse-strong"></Icon>
-                DDL & DML 工单提交统计
-              </p>
-              <div class="data-source-row">
-                <data-source-pie></data-source-pie>
-              </div>
-            </Card>
-          </Col>
-        </Row>
-      </Col>
+        </Row> 
+      </Col> -->
     </Row>
+
+
   </div>
 </template>
 
@@ -136,7 +87,9 @@
         count: {
           createUser: 0,
           order: 0,
-          link: 0
+          link: 0,
+          env: 0,
+          service: 0
         },
         newToDoItemValue: '',
         time: '',
@@ -154,11 +107,10 @@
       }
     },
     mounted () {
+      var _this = this
       axios.get(`${this.$config.url}/homedata/infocard`)
         .then(res => {
-          this.count.createUser = res.data[0]
-          this.count.order = res.data[1]
-          this.count.link = res.data[2]
+          _this.count = res.data
         })
         .catch(error => {
           this.$config.err_notice(this, error)
