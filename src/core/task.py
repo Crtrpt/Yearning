@@ -121,8 +121,8 @@ class order_push_message(object):
         self.order = SqlOrder.objects.filter(id=id).first()
         self.from_user = from_user
         self.to_user = to_user
-        self.env = self.order.env
-        self.service = self.order.service
+        self.env = self.order.env_name
+        self.service = self.order.service_name
         self.version = self.order.version
         self.title = f'工单:{self.order.work_id}审核通过通知'
 

@@ -163,8 +163,8 @@ class query_order(models.Model):
     audit = models.CharField(max_length=100, null=True)
     time = models.CharField(max_length=100, null=True)
     real_name = models.CharField(max_length=100, null=True)  # 真实姓名
-    version = models.CharField(max_length=50, null=True)  # =版本
-    env_name = models.CharField(max_length=10, null=True)  # =版本
-    service_name = models.CharField(max_length=10, null=True)  # 服务
-    env_id = models.IntegerField(null=False)  # =版本
-    service_id = models.IntegerField(null=False)  # 服务
+    # version = models.CharField(max_length=50, null=True)  # =版本
+    # env_name = models.CharField(max_length=10, null=True)  # =版本
+    # service_name = models.CharField(max_length=10, null=True)  # 服务
+    # env_id = models.IntegerField(null=False)  # =版本
+    # service_id = models.IntegerField(null=False)  # 服务

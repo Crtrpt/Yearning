@@ -113,7 +113,7 @@ class Query_review(serializers.HyperlinkedModelSerializer):
         model = query_order
         fields = (
             'work_id', 'username', 'date', 'instructions', 'query_per', 'connection_name', 'computer_room',
-            'export', 'time', 'real_name','version','env_name',"service_name","env_id","service_id")
+            'export', 'time', 'real_name')
 
 
 class Query_list(serializers.HyperlinkedModelSerializer):

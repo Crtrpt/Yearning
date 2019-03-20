@@ -223,6 +223,7 @@ export default {
         assigned: '',
         delay: null
       },
+      preid: null, // 前置工单号
       id: null,
       tabs: 'order1',
       optionData: [
@@ -513,6 +514,7 @@ export default {
     }
   },
   mounted () {
+    console.log('前置工单:' + this.$route.query.id);
     for (let i of this.$config.highlight.split('|')) {
       this.wordList.push({ 'vl': i, 'meta': '关键字' })
     }
